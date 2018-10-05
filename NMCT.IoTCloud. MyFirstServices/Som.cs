@@ -8,16 +8,15 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace NMCT.IoTCloud. MyFirstServices
 {
-    public static class HelloFunctions
+    public static class Som
     {
-        [FunctionName("HelloFunctions")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "hello/{myname}/{age}")]HttpRequestMessage req,string myname,string age, TraceWriter log)
+        [FunctionName("Som")]
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
 
-            string name = $"Mijn naam is {myname} en leeftijd is {age}";
             // parse query parameter
-            name = req.GetQueryNameValuePairs()
+            string name = req.GetQueryNameValuePairs()
                 .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
                 .Value;
 
